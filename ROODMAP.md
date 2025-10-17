@@ -8,5 +8,3 @@
 ## 🧩 Project Overview
 Real-time artifact removal for passthrough AR (temporal + spatial denoising).  
 This project focuses on lightweight, low-latency spatio-temporal denoising to enhance AR passthrough video stability and visual quality.
-
-## 📁 Structure
