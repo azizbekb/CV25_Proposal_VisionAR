@@ -39,4 +39,8 @@ Our focus is on **lightweight, low-latency spatio-temporal denoising**, improvin
 ---
 
 ## 🧩 System Architecture  
-
+### 🔄 Pipeline Explanation
+1. **Camera Input:** Real-time video stream captured from webcam or AR passthrough feed.  
+2. **Preprocessing:** Basic normalization, motion stabilization, and artifact detection.  
+3. **Denoising Model:** Lightweight CNN applies both spatial and temporal denoising.  
+4. **Output Rendering:** Clean frames are displayed back in the AR environment in real time.
