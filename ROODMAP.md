@@ -6,7 +6,7 @@
 - 🧪 **Ikromjon — Data & Integration Lead**  
 **Semester:** Fall 2025  
 **Course:** Computer Vision (CV25)  
-**Repo:** [https://github.com/VisionAR/CV25_VisionAR](https://github.com/VisionAR/CV25_VisionAR)
+**Repo:** https://github.com/azizbekb/CV25_Proposal_VisionAR
 
 ---
 
