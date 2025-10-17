@@ -3,9 +3,9 @@
 **Course:** Computer Vision (CV25), Fall 2025  
 **Team Name:** VisionAR  
 **Members:**
-- 🧩 Azizbek — Project Lead  
-- ⚙️ Azim — Model & Evaluation Lead  
-- 🧪 Ikromjon — Data & Integration Lead  
+- 🧩 Azizbek(221198) — Project Lead  
+- ⚙️ Azim(221379) — Model & Evaluation Lead  
+- 🧪 Ikromjon(220448) — Data & Integration Lead  
 
 ---
 
