@@ -1,46 +1,71 @@
-# 🧠 CV25_Proposal_VisionAR
-
-**Team VisionAR**  
-- 🧩 **Azizbek — Project Lead**  
-- ⚙️ **Azim — Model & Evaluation Lead**  
-- 🧪 **Ikromjon — Data & Integration Lead**  
-
----
-
-## 🎯 Project Overview  
-**Real-Time Artifact Removal for Passthrough AR (Temporal + Spatial Denoising)**  
-
-VisionAR aims to enhance augmented reality (AR) passthrough video feeds by removing temporal and spatial artifacts in real time.  
-Our focus is on **lightweight, low-latency spatio-temporal denoising**, improving **video stability, clarity, and overall visual quality** for AR glasses and mixed-reality headsets.  
+# 🗺️ VisionAR — Project Roadmap
+**Project:** Real-Time Artifact Removal for Passthrough AR  
+**Team:** Azizbek (Lead), Azim (Model & Evaluation), Ikromjon (Data & Integration)  
+**Semester:** Fall 2025  
+**Repo:** https://github.com/VisionAR/CV25_VisionAR
 
 ---
 
-## 🚀 Objectives  
-- Design a **real-time artifact removal pipeline** optimized for AR passthrough video.  
-- Implement **temporal smoothing** and **spatial denoising** using efficient deep learning models.  
-- Maintain **<30ms latency** to ensure seamless real-time AR performance.  
+## 📆 Weekly Milestones
+
+### **Week 1 (Oct 17–Oct 21) — Team & Proposal**
+- ✅ Finalize topic (#23) and submit proposal PDF.
+- ✅ Create repo and add README + ROADMAP.md.
+- 🔧 Set up Python environment and verify OpenCV + PyTorch versions.
+- **Owner:** Azizbek  
+
+### **Week 2 (Oct 22–Oct 28) — Research & Dataset Setup**
+- Collect AR passthrough or webcam video samples (e.g., OpenAR dataset or custom recordings).
+- Study existing denoising models (DnCNN, FastDVDnet).
+- Prepare small test dataset for experiments.
+- **Owner:** Ikromjon  
+
+### **Week 3 (Oct 29–Nov 4) — Baseline Implementation**
+- Implement baseline denoising with OpenCV filters (Gaussian, Bilateral).
+- Measure PSNR/SSIM and latency for baseline.
+- **Owner:** Azim  
+
+### **Week 4 (Nov 5–Nov 11) — Model Integration**
+- Integrate lightweight CNN (DnCNN or FastDVDnet).
+- Add temporal consistency module for smoother video output.
+- Test real-time FPS performance.
+- **Owner:** Azim  
+
+### **Week 5 (Nov 12–Nov 18) — Optimization & Evaluation**
+- Optimize inference speed (batch size, frame resizing, GPU/CPU switch).
+- Evaluate latency (<30ms), PSNR, SSIM, and perceptual stability.
+- Record sample output video for report/demo.
+- **Owner:** Azizbek  
+
+### **Week 6 (Nov 19–Nov 25) — Final Report & Demo**
+- Write final report + prepare slides/video demo.
+- Conduct internal team review.
+- Submit code, report, and video.
+- **Owner:** Whole team  
 
 ---
 
-## 🧠 Methodology  
-1. **Frame Acquisition:** Capture real-time video from webcam or AR passthrough input.  
-2. **Preprocessing:** Normalize frames, stabilize motion, and detect noise/artifacts.  
-3. **Denoising Network:** Apply lightweight CNN for spatial denoising + temporal consistency module.  
-4. **Rendering:** Output clean frames to the AR display pipeline in real time.  
+## 🧭 Roles (RACI Summary)
+| Task | Responsible | Accountable | Consulted | Informed |
+|------|-------------|--------------|------------|-----------|
+| Project Management | Azizbek | Azizbek | Team | Instructor |
+| Dataset & Preprocessing | Ikromjon | Azizbek | Azim | Team |
+| Model Implementation | Azim | Azizbek | Ikromjon | Team |
+| Evaluation & Metrics | Azim | Azizbek | Team | Instructor |
+| Documentation & Report | Azizbek | Whole Team | Team | Instructor |
 
 ---
 
-## ⚙️ Tech Stack  
-- **Language:** Python  
-- **Libraries:** OpenCV, PyTorch, NumPy  
-- **Framework:** TorchVision for model training and inference  
-- **Hardware:** GPU-accelerated (CUDA optional)  
+## ✅ Progress Updates
+- **[W1]** Team + topic finalized, repo created, environment verified.  
+- **[W2]** Dataset collected, baseline filters tested.  
+- **[W3]** Baseline model running, evaluation metrics defined.  
+- **[W4–W6]** Advanced model integrated, optimized, and final demo produced.
 
 ---
 
-## 🧩 System Architecture  
-### 🔄 Pipeline Explanation
-1. **Camera Input:** Real-time video stream captured from webcam or AR passthrough feed.  
-2. **Preprocessing:** Basic normalization, motion stabilization, and artifact detection.  
-3. **Denoising Model:** Lightweight CNN applies both spatial and temporal denoising.  
-4. **Output Rendering:** Clean frames are displayed back in the AR environment in real time.
+## 🏁 Final Deliverables
+- 📄 **Final Report (PDF)**  
+- 💻 **GitHub Repository** (code, README, ROADMAP.md)  
+- 🎥 **Demo Video** showing before/after denoising  
+- 🧮 **Evaluation Results:** latency, PSNR, SSIM, perceptual stability
