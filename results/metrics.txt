@@ -1,0 +1,4 @@
+Baseline FPS: 31.80
+Average latency (ms): 28.20
+CNN avg_latency_ms: 25.45 fps:39.25
+PSNR: 28.91 SSIM: 0.84
