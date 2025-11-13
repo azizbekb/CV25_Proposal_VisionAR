@@ -1,0 +1,21 @@
+VisionAR — Lab Demo Notes
+-------------------------
+Hello, this is Team VisionAR.
+
+This project performs real-time artifact removal for AR video.
+Our baseline version uses OpenCV filters (Gaussian + Bilateral),
+and the CNN version uses a lightweight PyTorch network.
+
+Demo steps:
+1. Run src/baseline_denoise.py → shows original vs. denoised feed
+2. Run src/measure_latency.py → prints average latency (ms)
+3. Run src/cnn_denoise.py → produces cnn_demo.mp4 in /results/
+4. Compare videos with results/eval_metrics.py (PSNR & SSIM)
+
+Results:
+- Baseline FPS ≈ 31
+- Baseline latency ≈ 28 ms
+- CNN latency ≈ 25 ms, PSNR ≈ 28.9 dB, SSIM ≈ 0.84
+
+Next:
+Integrate temporal smoothing and finalize demo video.
