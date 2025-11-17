@@ -1,21 +1,22 @@
-# 🧠 VisionAR — Real-Time Artifact Removal for Passthrough AR
-
-**Course:** Computer Vision (CV25), Fall 2025  
-**Team Name:** VisionAR  
-**Members:**
-- 🧩 Azizbek(221198) — Project Lead  
-- ⚙️ Azim(221379) — Model & Evaluation Lead  
-- 🧪 Ikromjon(220448) — Data & Integration Lead  
+# 🧠 VisionAR — Real-Time Artifact Removal for AR Passthrough  
+**Team:** VisionAR  
+- **Azizbek** — Project Lead  
+- **Azim** — Model & Evaluation Lead  
+- **Ikromjon** — Data & Integration Lead  
 
 ---
 
-## 🎯 Overview
-VisionAR aims to enhance **Augmented Reality (AR)** passthrough video streams by removing **temporal and spatial artifacts** in real time.  
-We focus on building a **lightweight, low-latency spatio-temporal denoising pipeline** that improves **clarity, stability, and realism** for AR glasses and mixed-reality devices.
+## 🎯 Project Summary  
+VisionAR is a real-time artifact-removal pipeline designed for AR passthrough video streams.  
+The system reduces noise, artifacts, and temporal inconsistencies using:
+
+- 📍 **Baseline OpenCV filters** (Gaussian + Bilateral)  
+- 📍 **Lightweight CNN denoising model** (PyTorch)  
+- 📍 **PSNR / SSIM quality evaluation**  
+- 📍 **Latency and FPS benchmarking**
+
+The project focuses on **speed**, **clarity**, and **real-time performance**, suitable for future AR headsets and mixed-reality applications.
 
 ---
 
-## ⚙️ Tech Stack
-- **Language:** Python 3.10  
-- **Libraries:** OpenCV, PyTorch, NumPy, TorchVision  
-- **Hardware:** GPU-accelerated (CUDA optional)  
+## 🗂 Repository Structure  
