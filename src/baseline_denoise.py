@@ -3,8 +3,8 @@ import numpy as np
 import time
 import os
 
-VIDEO_IN = "../data/sample_videos/example.mp4"
-OUT_DIR = "../results"
+VIDEO_IN = "data/sample_videos/example.mp4"
+OUT_DIR = "results"
 OUT_VIDEO = os.path.join(OUT_DIR, "baseline_demo.mp4")
 METRICS = os.path.join(OUT_DIR, "metrics.txt")
 
