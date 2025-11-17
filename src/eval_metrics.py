@@ -2,9 +2,9 @@ import cv2, numpy as np, os
 from skimage.metrics import peak_signal_noise_ratio as psnr
 from skimage.metrics import structural_similarity as ssim
 
-ORIG = "../data/sample_videos/example.mp4"
-CNN_OUT = "../results/cnn_demo.mp4"
-METRICS = "../results/metrics.txt"
+ORIG = "data/sample_videos/example.mp4"
+CNN_OUT = "results/cnn_demo.mp4"
+METRICS = "results/metrics.txt"
 os.makedirs(os.path.dirname(METRICS), exist_ok=True)
 
 cap_o = cv2.VideoCapture(ORIG)
