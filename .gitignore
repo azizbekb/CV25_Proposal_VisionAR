@@ -1,0 +1,6 @@
+# ignore videos and large outputs
+data/sample_videos/*.mp4
+results/*.mp4
+__pycache__/
+*.pyc
+.env
