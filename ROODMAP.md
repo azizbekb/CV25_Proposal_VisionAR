@@ -1,94 +1,76 @@
-# 🗺️ VisionAR — Project Roadmap
-**Project:** Real-Time Artifact Removal for Passthrough AR (Temporal + Spatial Denoising)  
-**Team:** VisionAR  
-- 🧩 **Azizbek — Project Lead**  
-- ⚙️ **Azim — Model & Evaluation Lead**  
-- 🧪 **Ikromjon — Data & Integration Lead**  
-**Semester:** Fall 2025  
+# 🗺️ VisionAR — Project Roadmap  
 **Course:** Computer Vision (CV25)  
-**Repo:** https://github.com/azizbekb/CV25_Proposal_VisionAR
+**Team:** VisionAR (Azizbek, Azim, Ikromjon)  
 
 ---
 
-## 📆 Weekly Milestones
-
-### **Week 1 (Oct 17–Oct 21) — Team & Proposal**
-- ✅ Finalize topic (#23) and submit proposal PDF.  
-- ✅ Create repo and add README + ROADMAP.md.  
-- 🔧 Set up Python environment and verify OpenCV + PyTorch installations.  
-- **Owner:** Azizbek  
+## 📌 Overview  
+This roadmap tracks development progress for the VisionAR real-time artifact removal system.  
+It includes milestones, responsibilities, deliverables, and progress logs.
 
 ---
 
-### **Week 2 (Oct 22–Oct 28) — Research & Dataset Setup**
-- Collect AR passthrough or webcam video samples (OpenAR dataset or custom recordings).  
-- Review denoising models: DnCNN, FastDVDnet, Real-ESRGAN.  
-- Prepare small dataset for initial testing.  
-- **Owner:** Ikromjon  
+# 🧱 Milestones
+
+### **M1 — Project Setup**
+- Team formation  
+- Topic selection (#23 Real-Time Artifact Removal for AR Passthrough)  
+- GitHub repo created  
+- Proposal submitted (`docs/CV25_Proposal_VisionAR.pdf`)
+
+**Status:** ✔ Completed  
 
 ---
 
-### **Week 3 (Oct 29–Nov 4) — Baseline Implementation**
-- Implement baseline denoising using OpenCV filters (Gaussian, Bilateral, Median).  
-- Measure baseline metrics (PSNR, SSIM, FPS, latency).  
-- Log results in `/results/baseline/` folder.  
-- **Owner:** Azim  
+### **M2 — Baseline Pipeline**
+- Load sample video (`data/sample_videos/example.mp4`)  
+- Implement Gaussian + Bilateral denoise  
+- Generate baseline demo video  
+- Measure FPS + Latency  
+
+**Files:**  
+`src/baseline_denoise.py`  
+`src/measure_latency.py`
+
+**Status:** ✔ Completed
 
 ---
 
-### **Week 4 (Nov 5–Nov 11) — Model Integration**
-- Integrate lightweight CNN (DnCNN or FastDVDnet).  
-- Add temporal consistency module for smoother video denoising.  
-- Test real-time FPS and latency performance.  
-- **Owner:** Azim  
+### **M3 — CNN Denoising Module**
+- Implement lightweight CNN (PyTorch)  
+- Apply per-frame inference  
+- Save CNN demo video  
+- Compare with baseline  
+
+**Files:**  
+`src/cnn_denoise.py`
+
+**Status:** ✔ Completed
 
 ---
 
-### **Week 5 (Nov 12–Nov 18) — Optimization & Evaluation**
-- Optimize inference (frame resizing, batch tuning, GPU vs CPU).  
-- Evaluate latency (<30ms), PSNR, SSIM, and perceptual stability.  
-- Record short before/after sample video.  
-- **Owner:** Azizbek  
+### **M4 — Evaluation**
+- Compute PSNR / SSIM  
+- Compare Original vs CNN Output  
+- Append results to metrics file  
+
+**Files:**  
+`src/eval_metrics.py`  
+`results/metrics.txt`
+
+**Status:** ✔ Completed
 
 ---
 
-### **Week 6 (Nov 19–Nov 25) — Final Report & Demo**
-- Write final report and prepare presentation/demo video.  
-- Conduct internal review and finalize deliverables.  
-- Submit report + repo link via LMS.  
-- **Owner:** Whole Team  
+### **M5 — Final Deliverables**
+- Final combined comparison video  
+- README polished  
+- Repo finalized  
+- In-class demo prepared  
+
+**Status:** ⏳ In Progress
 
 ---
 
-## 🧭 Roles (RACI Summary)
-| Task | Responsible | Accountable | Consulted | Informed |
-|------|-------------|--------------|------------|-----------|
-| Project Management | Azizbek | Azizbek | Team | Instructor |
-| Dataset & Preprocessing | Ikromjon | Azizbek | Azim | Team |
-| Model Implementation | Azim | Azizbek | Ikromjon | Team |
-| Evaluation & Metrics | Azim | Azizbek | Team | Instructor |
-| Documentation & Report | Azizbek | Whole Team | Team | Instructor |
+# 📅 Weekly Progress Log (Required for class)
 
----
-
-## ✅ Weekly Progress Log
-- **[W1]** Team & topic finalized, repo created, environment verified.  
-- **[W2]** Dataset collected, reviewed existing denoising models.  
-- **[W3]** Baseline filters implemented, metrics tested.  
-- **[W4]** Lightweight CNN integrated, real-time FPS verified.  
-- **[W5]** Optimization done, evaluation results collected.  
-- **[W6]** Final report and demo video submitted.  
-
----
-
-## 🏁 Final Deliverables
-- 📄 **Final Report (PDF)**  
-- 💻 **GitHub Repository** (code, README, ROADMAP.md)  
-- 🎥 **Demo Video** showing before/after denoising  
-- 📊 **Evaluation Results:** Latency, PSNR, SSIM, perceptual stability  
-
----
-
-### 🧠 Notes
-> This roadmap will be updated weekly as part of the project’s continuous progress tracking.  
-> Each week’s commit will reference its corresponding milestone (e.g., `[W3] Baseline model results logged`).
