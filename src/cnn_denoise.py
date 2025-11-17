@@ -4,8 +4,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-VIDEO_IN = "../data/sample_videos/example.mp4"
-OUT_DIR = "../results"
+VIDEO_IN = "data/sample_videos/example.mp4"
+OUT_DIR = "results"
 OUT_VIDEO = os.path.join(OUT_DIR, "cnn_demo.mp4")
 METRICS = os.path.join(OUT_DIR, "metrics.txt")
 os.makedirs(OUT_DIR, exist_ok=True)
