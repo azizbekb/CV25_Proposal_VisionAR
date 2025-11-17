@@ -1,41 +1,52 @@
 import cv2
 import numpy as np
-import time, os
+import time
+import os
 
-cap = cv2.VideoCapture(0)
+VIDEO_IN = "../data/sample_videos/example.mp4"
+OUT_DIR = "../results"
+OUT_VIDEO = os.path.join(OUT_DIR, "baseline_demo.mp4")
+METRICS = os.path.join(OUT_DIR, "metrics.txt")
+
+os.makedirs(OUT_DIR, exist_ok=True)
+
+cap = cv2.VideoCapture(VIDEO_IN)
 if not cap.isOpened():
-    print("Error: Cannot open webcam")
-    exit()
+    print(f"ERROR: cannot open video {VIDEO_IN}")
+    exit(1)
+
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+fps = cap.get(cv2.CAP_PROP_FPS) or 30
+w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+out = cv2.VideoWriter(OUT_VIDEO, fourcc, fps, (w * 2, h))
 
 frame_count = 0
-start = time.time()
+start_time = time.time()
+
+print("Processing baseline denoise... (file input)")
 
 while True:
     ret, frame = cap.read()
     if not ret:
         break
 
-    # Apply simple baseline filters
-    gaussian = cv2.GaussianBlur(frame, (5,5), 0)
+    gaussian = cv2.GaussianBlur(frame, (5, 5), 0)
     bilateral = cv2.bilateralFilter(gaussian, 9, 75, 75)
 
     combined = np.hstack((frame, bilateral))
-    cv2.putText(combined, "Original | Denoised", (40, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+    out.write(combined)
 
-    cv2.imshow("VisionAR Baseline", combined)
     frame_count += 1
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-end = time.time()
-fps = frame_count / (end - start)
-print(f"FPS: {fps:.2f}")
-
-os.makedirs("../results", exist_ok=True)
-with open("../results/metrics.txt", "a") as f:
-    f.write(f"Baseline FPS: {fps:.2f}\n")
-
 cap.release()
-cv2.destroyAllWindows()
+out.release()
+elapsed = time.time() - start_time
+fps_proc = frame_count / elapsed if elapsed > 0 else 0.0
+
+print(f"Baseline done: frames={frame_count}, elapsed={elapsed:.2f}s, fps={fps_proc:.2f}")
+
+with open(METRICS, "a") as f:
+    f.write(f"[baseline] frames:{frame_count} elapsed:{elapsed:.2f} fps:{fps_proc:.2f}\n")
+
+print(f"Saved: {OUT_VIDEO}")
