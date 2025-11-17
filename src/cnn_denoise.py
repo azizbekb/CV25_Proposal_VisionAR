@@ -1,63 +1,76 @@
-import cv2, torch, torch.nn as nn, numpy as np, os, time
-from tqdm import tqdm
+import os, time
+import cv2
+import numpy as np
+import torch
+import torch.nn as nn
 
-# Simple lightweight CNN model
+VIDEO_IN = "../data/sample_videos/example.mp4"
+OUT_DIR = "../results"
+OUT_VIDEO = os.path.join(OUT_DIR, "cnn_demo.mp4")
+METRICS = os.path.join(OUT_DIR, "metrics.txt")
+os.makedirs(OUT_DIR, exist_ok=True)
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
 class SmallDenoiser(nn.Module):
     def __init__(self):
         super().__init__()
         self.net = nn.Sequential(
-            nn.Conv2d(3, 32, 3, padding=1), nn.ReLU(),
-            nn.Conv2d(32, 32, 3, padding=1), nn.ReLU(),
+            nn.Conv2d(3, 32, 3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(32, 32, 3, padding=1),
+            nn.ReLU(inplace=True),
             nn.Conv2d(32, 3, 3, padding=1)
         )
     def forward(self, x):
-        return self.net(x)
+        return x + 0.1 * self.net(x)
 
-# Initialize model
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
 model = SmallDenoiser().to(device)
 model.eval()
 
-# Open sample video
-os.makedirs("../results", exist_ok=True)
-input_video = "../data/sample_videos/example.mp4"
-cap = cv2.VideoCapture(input_video)
+cap = cv2.VideoCapture(VIDEO_IN)
 if not cap.isOpened():
-    print("Error: no video")
-    exit()
+    print(f"ERROR: cannot open video {VIDEO_IN}")
+    exit(1)
 
-# Video writer for output
-out_path = "../results/cnn_demo.mp4"
-fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-fps = cap.get(cv2.CAP_PROP_FPS)
-w, h = int(cap.get(3)), int(cap.get(4))
-out = cv2.VideoWriter(out_path, fourcc, fps, (w, h))
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+fps = cap.get(cv2.CAP_PROP_FPS) or 30
+w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+out = cv2.VideoWriter(OUT_VIDEO, fourcc, fps, (w, h))
 
-frame_count, total_t = 0, 0
-print("Running lightweight CNN denoiser...")
+frame_count = 0
+total_infer = 0.0
+print("Running CNN denoiser inference (file input)...")
 
 with torch.no_grad():
-    for _ in tqdm(range(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))):
+    while True:
         ret, frame = cap.read()
         if not ret:
             break
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        tensor = torch.from_numpy(img).float().permute(2,0,1).unsqueeze(0).to(device)/255.
+        tensor = torch.from_numpy(img).float().permute(2,0,1).unsqueeze(0).to(device) / 255.0
+
         t0 = time.time()
-        denoised = model(tensor)
-        t1 = time.time()
-        total_t += (t1 - t0)
+        out_t = model(tensor)
+        infer_time = time.time() - t0
+        total_infer += infer_time
+
+        out_img = (out_t.squeeze(0).permute(1,2,0).cpu().numpy() * 255.0).clip(0,255).astype("uint8")
+        bgr = cv2.cvtColor(out_img, cv2.COLOR_RGB2BGR)
+        out.write(bgr)
+
         frame_count += 1
-        out_img = (denoised.squeeze(0).permute(1,2,0).cpu().numpy()*255).astype(np.uint8)
-        out_bgr = cv2.cvtColor(out_img, cv2.COLOR_RGB2BGR)
-        out.write(out_bgr)
 
 cap.release()
 out.release()
 
-avg_latency = (total_t/frame_count)*1000
-fps_out = 1000 / avg_latency
-print(f"Average latency: {avg_latency:.2f} ms | FPS: {fps_out:.2f}")
+avg_infer_ms = (total_infer / frame_count) * 1000 if frame_count else 0.0
+fps_proc = 1000.0 / avg_infer_ms if avg_infer_ms>0 else 0.0
 
-with open("../results/metrics.txt", "a") as f:
-    f.write(f"CNN avg_latency_ms:{avg_latency:.2f} fps:{fps_out:.2f}\n")
+print(f"CNN done: frames={frame_count}, avg_infer_ms={avg_infer_ms:.2f}ms, fps_est={fps_proc:.2f}")
+
+with open(METRICS, "a") as f:
+    f.write(f"[cnn] frames:{frame_count} avg_infer_ms:{avg_infer_ms:.2f} fps_est:{fps_proc:.2f}\n")
+
+print(f"Saved: {OUT_VIDEO}")
