@@ -1,7 +1,7 @@
 import cv2, time, os
 
-VIDEO_IN = "../data/sample_videos/example.mp4"
-OUT_DIR = "../results"
+VIDEO_IN = "data/sample_videos/example.mp4"
+OUT_DIR = "results"
 METRICS = os.path.join(OUT_DIR, "metrics.txt")
 os.makedirs(OUT_DIR, exist_ok=True)
 
