@@ -7,11 +7,13 @@ This demo shows:
 2) Latency measurement: results/metrics.txt (latency)
 3) CNN inference (lightweight): results/cnn_demo.mp4
 4) Evaluation PSNR/SSIM: results/metrics.txt
+5)Comparison video:
 
 Commands to run (local):
 python src/baseline_denoise.py
 python src/measure_latency.py
 python src/cnn_denoise.py
 python src/eval_metrics.py
+ffmpeg -i data/sample_videos/example.mp4 -i results/cnn_demo.mp4 -filter_complex hstack results/final_comparison.mp4
 
 Next step: integrate temporal smoothing and optimize via ONNX.
