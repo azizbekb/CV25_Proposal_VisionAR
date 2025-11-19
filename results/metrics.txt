@@ -2,3 +2,15 @@ Baseline FPS: 31.80
 Average latency (ms): 28.20
 CNN avg_latency_ms: 25.45 fps:39.25
 PSNR: 28.91 SSIM: 0.84
+[baseline] frames:221 elapsed:10.40 fps:21.25
+[latency] avg_ms:20.46 min_ms:19.23 max_ms:75.52
+[cnn] frames:221 avg_infer_ms:3.99 fps_est:250.76
+[eval] PSNR:33.65 SSIM:0.973 frames:221
+[baseline] frames:199 elapsed:37.72 fps:5.28
+[cnn] frames:199 avg_infer_ms:4.97 fps_est:201.23
+[eval] PSNR:39.60 SSIM:0.979 frames:199
+[latency] avg_ms:79.90 min_ms:-1941.11 max_ms:153.28
+[baseline] frames:168 elapsed:4.31 fps:39.01
+[latency] avg_ms:15.47 min_ms:10.46 max_ms:117.41
+[cnn] frames:168 avg_infer_ms:7.20 fps_est:138.92
+[eval] PSNR:inf SSIM:0.968 frames:168
