@@ -74,3 +74,46 @@ It includes milestones, responsibilities, deliverables, and progress logs.
 
 # 📅 Weekly Progress Log (Required for class)
 
+### [W1] Baseline Pipeline Completed
+- Sample video selected and added to `data/sample_videos/example.mp4`
+- Implemented baseline Gaussian + Bilateral denoising
+- Generated `baseline_demo.mp4`
+- Logged baseline FPS and latency to `results/metrics.txt`
+**Status:** ✔ Completed
+
+---
+
+### [W2] CNN Denoising Module Completed
+- Implemented lightweight 3-layer CNN in `cnn_denoise.py`
+- Ran per-frame inference on sample video
+- Generated `cnn_demo.mp4`
+- Logged CNN FPS and latency to `results/metrics.txt`
+**Status:** ✔ Completed
+
+---
+
+### [W3] Evaluation Metrics Implemented
+- Wrote `eval_metrics.py`
+- Calculated PSNR and SSIM between original vs CNN
+- Added evaluation results to `results/metrics.txt`
+**Status:** ✔ Completed
+
+---
+
+### [W4] Optimization + Final Comparison (In Progress)
+- Side-by-side final comparison video in progress
+- Code refactoring and performance tuning
+- Preparing final demo video
+**Status:** 🔄 In Progress
+
+---
+
+### [W5] Final Report + Presentation (Upcoming)
+- Write final 5–6 page report
+- Prepare final slide deck
+- Prepare live in-class demo
+- Finalize GitHub repo
+**Status:** ⏳ Not Started
+
+
+
