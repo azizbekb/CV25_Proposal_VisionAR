@@ -18,3 +18,6 @@ PSNR: 28.91 SSIM: 0.84
 [baseline] frames:168 elapsed:4.06 fps:41.34
 [cnn] frames:168 avg_infer_ms:6.14 fps_est:162.86
 [baseline] frames:168 elapsed:5.76 fps:29.18
+[cnn] frames:168 avg_infer_ms:3.67 fps_est:272.27
+[eval] PSNR:inf SSIM:0.963 frames:168
+[latency] avg_ms:8.20 min_ms:6.72 max_ms:67.79
