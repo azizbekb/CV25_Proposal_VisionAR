@@ -14,6 +14,16 @@ python src/baseline_denoise.py
 python src/measure_latency.py
 python src/cnn_denoise.py
 python src/eval_metrics.py
-ffmpeg -i data/sample_videos/example.mp4 -i results/cnn_demo.mp4 -filter_complex hstack results/final_comparison.mp4
+ffmpeg \
+-i data/sample_videos/example.mp4 \
+-i results/baseline_demo.mp4 \
+-i results/cnn_demo.mp4 \
+-filter_complex "\
+[0:v]drawtext=text='ORIGINAL':x=(w-text_w)/2:y=10:fontsize=28:fontcolor=white:box=1:boxcolor=black@0.5[f0]; \
+[1:v]drawtext=text='BASELINE':x=(w-text_w)/2:y=10:fontsize=28:fontcolor=white:box=1:boxcolor=black@0.5[f1]; \
+[2:v]drawtext=text='CNN':x=(w-text_w)/2:y=10:fontsize=28:fontcolor=white:box=1:boxcolor=black@0.5[f2]; \
+[f0][f1][f2]hstack=inputs=3" \
+results/final_comparison_labeled.mp4
+
 
 Next step: integrate temporal smoothing and optimize via ONNX.
